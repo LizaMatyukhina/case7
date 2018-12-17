@@ -34,6 +34,22 @@ with open('output.txt', 'w', encoding="UTF-8") as f_out:
 
 # Alina - work with words and dictionaries.
 
-
+keywords = []
+allwords = []
+slovar = {}
+with open('output.txt', encoding="UTF-8") as f_in:
+    text = f_in.read()
+    lst = text.split()
+    for i in range(len(lst)-1):
+        nextword = []
+        if lst[i] not in allwords:
+            for m in range(len(lst)):
+                if lst[i] == lst[m]:
+                    nextword.append(lst[m+1])
+            slovar[lst[i]] = nextword
+            allwords.append(lst[i])
+        if lst[i].lower() != lst[i] and lst[i] not in keywords:
+            keywords.append(lst[i])
+print(keywords)
+print(slovar)
 # Liza - work with dictionaries, sentences and random.
-
