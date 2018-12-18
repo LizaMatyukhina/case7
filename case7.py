@@ -58,6 +58,8 @@ number_of_sentences = int(input())
 for i in range(number_of_sentences):
     sentence = []
     word = random.choice(startwords)
+    while word in endwords:
+        word = random.choice(startwords)
     sentence.append(word)
     count += 1
     while count < 20:
