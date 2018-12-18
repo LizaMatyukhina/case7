@@ -43,13 +43,13 @@ with open('output.txt', encoding="UTF-8") as f_in:
         word = lst[i]
         if word not in allwords:
             for m in range(len(lst)):
-                if word == lst[m]:
+                if word == lst[m] and word not in nextword:
                     nextword.append(lst[m+1])
             slovar[word] = nextword
             allwords.append(word)
         if word.lower() != word and word not in startwords and word[-1] not in symbols_of_end:
             startwords.append(word)
-        if word[-1] in symbols_of_end:
+        if word[-1] in symbols_of_end and word not in endwords:
             endwords.append(word)
 print(startwords)
 print(endwords)
