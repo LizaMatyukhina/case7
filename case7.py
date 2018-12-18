@@ -10,10 +10,6 @@ Developers:
 with open('input.txt', encoding="UTF-8") as f_in:
     text = f_in.read()
 with open('output.txt', 'w', encoding="UTF-8") as f_out:
-    symbols_of_end = ['.', '!', '?']
-    for i in symbols_of_end:
-        if i in text:
-            text = text.replace(i, ' ')
     symbols = ['"', '#', '$', '%', '&', '(', ')', '*', '+', '-', '/', ':', ';', '<', '=', '>', '@', '[', ']', '^', '_',
                '`', '{', '|', '}', '~', '—', '«', '»']
     for i in symbols:
@@ -22,10 +18,10 @@ with open('output.txt', 'w', encoding="UTF-8") as f_out:
     punctuation = [' .', ' ,', ' !', ' ?']
     for i in punctuation:
         if i in text:
-            if i == ' .':
-                text = text.replace(i, '.')
-            elif i == ' ,':
+            if i == ' ,':
                 text = text.replace(i, ',')
+            elif i == ' .':
+                text = text.replace(i, '.')
             elif i == ' !':
                 text = text.replace(i, '!')
             elif i == ' ?':
@@ -34,22 +30,28 @@ with open('output.txt', 'w', encoding="UTF-8") as f_out:
 
 # Alina - work with words and dictionaries.
 
-keywords = []
+startwords = []
 allwords = []
+endwords = []
 slovar = {}
+symbols_of_end = ['.', '!', '?']
 with open('output.txt', encoding="UTF-8") as f_in:
     text = f_in.read()
     lst = text.split()
     for i in range(len(lst)-1):
         nextword = []
-        if lst[i] not in allwords:
+        word = lst[i]
+        if word not in allwords:
             for m in range(len(lst)):
-                if lst[i] == lst[m]:
+                if word == lst[m]:
                     nextword.append(lst[m+1])
-            slovar[lst[i]] = nextword
-            allwords.append(lst[i])
-        if lst[i].lower() != lst[i] and lst[i] not in keywords:
-            keywords.append(lst[i])
-print(keywords)
+            slovar[word] = nextword
+            allwords.append(word)
+        if word.lower() != word and word not in startwords and word[-1] not in symbols_of_end:
+            startwords.append(word)
+        if word[-1] in symbols_of_end:
+            endwords.append(word)
+print(startwords)
+print(endwords)
 print(slovar)
 # Liza - work with dictionaries, sentences and random.
